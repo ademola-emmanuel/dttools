@@ -7,7 +7,7 @@ A simple library for common date and time manipulations.
 ```bash
 pip install dttools
 
-## Usage
+### Usage
 1. Adding Business Days
 
 from dttools import add_business_days
