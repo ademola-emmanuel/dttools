@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime
-from datetimetools import add_business_days, days_between_in_business_days, format_relative_date, to_timezone
+from dttools import add_business_days, days_between_in_business_days, format_relative_date, to_timezone
 
 class TestDateUtils(unittest.TestCase):
     def test_add_business_days(self):
