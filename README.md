@@ -1,11 +1,11 @@
-# dttols
+# dttools
 
 A simple library for common date and time manipulations.
 
 ## Installation
 
 ```bash
-pip pip install dttools
+pip install dttools
 ```
 
 ## Usage
