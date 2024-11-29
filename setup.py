@@ -11,7 +11,7 @@ setup(
     author_email="ademola.emmanuel383@gmail.com",
     url="https://github.com/l4christ/dttools",
     packages=find_packages(),
-    install_requires=["pytz"],
+    install_requires=["pytz", "dateparser"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
