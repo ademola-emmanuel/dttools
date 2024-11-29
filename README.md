@@ -55,3 +55,35 @@ print(new_york_time)  # Output: The datetime converted to New York time
 
 
 ```
+
+```py
+# Parse Natural Language Date Strings 
+from dttools import parse_date
+
+result = parse_date("tomorrow")
+print(result)  # Outputs: 2024-11-29 00:00:00
+
+
+```
+
+
+```py
+# Parse Dates in Specific Languages
+from dttools import parse_in_language
+
+result = parse_in_language("hoy", ["es"])  # "hoy" means "today" in Spanish
+print(result)  # Outputs: 2024-11-28 00:00:00
+
+
+```
+
+
+```py
+# Parse Dates with Specific Formats
+from dttools import parse_with_format
+
+
+result = parse_with_format("25/12/2024", date_order="DMY")
+print(result)  # Outputs: 2024-12-25 00:00:00
+
+```
