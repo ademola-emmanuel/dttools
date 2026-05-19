@@ -75,4 +75,4 @@ Naive datetimes are treated as UTC.
 
 ## License
 
-MIT - see [LICENSE](LICENSE).
+MIT - see [LICENSE](https://github.com/ademola-emmanuel/dttools/blob/master/LICENSE).
