@@ -1,6 +1,6 @@
 # dttools
 
-A simple library for common date and time manipulations.
+A simple Python library for common date and time manipulations.
 
 ## Installation
 
@@ -8,50 +8,71 @@ A simple library for common date and time manipulations.
 pip install dttools
 ```
 
+Requires Python 3.10+. Uses the standard library's `zoneinfo` for timezones
+(no `pytz`). On Windows, `tzdata` is pulled in automatically.
+
 ## Usage
 
-```py
-# Adding Business Days
+### Adding (or subtracting) business days
+
+```python
 from dttools import add_business_days
-from datetime import datetime
+from datetime import datetime, date
 
 start_date = datetime(2023, 11, 10)
-new_date = add_business_days(start_date, 5)
-print(new_date)  # Output: A date 5 business days from the start_date, skipping weekends
+add_business_days(start_date, 5)   # 5 business days forward, skipping weekends
+add_business_days(start_date, -3)  # 3 business days backward
 
+# Optionally skip holidays too
+add_business_days(start_date, 5, holidays={date(2023, 11, 23)})
 ```
 
-```py
-# Calculating Business Days Between Dates
+### Counting business days between two dates
+
+```python
 from dttools import days_between_in_business_days
 from datetime import datetime
 
-start_date = datetime(2023, 11, 1)
-end_date = datetime(2023, 11, 10)
-business_days = days_between_in_business_days(start_date, end_date)
-print(business_days)  # Output: The count of business days between the two dates
-
+days_between_in_business_days(datetime(2023, 11, 1), datetime(2023, 11, 10))
+# Counts weekdays from start (inclusive) up to end (exclusive).
 ```
 
-```py
-# Formatting Relative Dates
+### Checking business days and weekends
+
+```python
+from dttools import is_business_day, is_weekend
+from datetime import date
+
+is_business_day(date(2023, 11, 10))  # True  (Friday)
+is_business_day(date(2023, 11, 11))  # False (Saturday)
+is_weekend(date(2023, 11, 11))       # True
+```
+
+### Human-readable relative dates
+
+```python
 from dttools import format_relative_date
 from datetime import datetime, timedelta
 
-some_date = datetime.now() - timedelta(days=3)
-relative_format = format_relative_date(some_date)
-print(relative_format)  # Output: "3 days ago"
-
+now = datetime.now()
+format_relative_date(now - timedelta(minutes=30))  # "30 minutes ago"
+format_relative_date(now - timedelta(hours=2))     # "2 hours ago"
+format_relative_date(now - timedelta(days=3))      # "3 days ago"
+format_relative_date(now + timedelta(days=1))      # "Tomorrow"
 ```
 
-```py
-# Converting to a Specific Time Zone
+### Converting to a specific timezone
+
+```python
 from dttools import to_timezone
-from datetime import datetime
+from datetime import datetime, timezone
 
-utc_time = datetime.utcnow()
-new_york_time = to_timezone(utc_time, "America/New_York")
-print(new_york_time)  # Output: The datetime converted to New York time
-
-
+utc_now = datetime.now(timezone.utc)
+to_timezone(utc_now, "America/New_York")
 ```
+
+Naive datetimes are treated as UTC.
+
+## License
+
+MIT - see [LICENSE](LICENSE).
